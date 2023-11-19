@@ -6,10 +6,10 @@ export default function ProfileInfo() {
     return(
 
         <div className="profile-info">
-            PROFIL
-            <img src="https://picsum.photos/500/300" alt="Profile picture" />
-            <span>Pseudo</span>
-            <span>Email</span>
+            <h3>PROFIL</h3>
+            <img className="profile-picture" src="https://picsum.photos/500/300" alt="Profile picture" />
+            <h3>Pseudo</h3>
+            <h3>Email</h3>
         </div>
 
     )

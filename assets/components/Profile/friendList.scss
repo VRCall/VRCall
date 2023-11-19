@@ -1,0 +1,25 @@
+@use '../../variables' as vars;
+
+.friend-list {
+    border: 2px solid vars.$cyan;
+    padding: 0 6%;
+    border-radius: 10px;
+    text-align: center;
+
+    .friend {
+        margin-bottom: 15px;
+        text-align: left;
+
+        .friend-picture {
+            max-width: 100px;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            border: 1px solid whitesmoke;
+        }
+
+        .friend-name {
+            margin-left: 15px;
+            font-size: 1.5em;
+        }
+    }
+}

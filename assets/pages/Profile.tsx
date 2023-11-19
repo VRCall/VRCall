@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProfileInfo from "../components/Profile/ProfileInfo";
 import './profile.scss'
+import FriendForm from "../components/Profile/FriendForm";
+import FriendList from "../components/Profile/FriendList";
+import FriendRequests from "../components/Profile/FriendRequests";
 
 export default function Profile() {
 
@@ -20,6 +23,9 @@ export default function Profile() {
     return(
         <div className="main-profile">
             <ProfileInfo />
+            <FriendForm />
+            <FriendList />
+            <FriendRequests />
         </div>
     )
 
