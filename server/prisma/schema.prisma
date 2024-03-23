@@ -28,6 +28,8 @@ model User {
   received_friendships Friendship[] @relation("receiver")
   group_created Group[]
   groups GroupMember[]
+  friendship_messages FriendshipMessage[]
+  group_messages GroupMessage[]
 }
 
 model Friendship {
@@ -65,6 +67,8 @@ model GroupMessage {
   text String
   group Group @relation(fields: [group_id], references: [id])
   group_id String
+  sender User @relation(fields: [sender_id], references: [id])
+  sender_id String
   sent_at DateTime @default(now())
   modified_at DateTime @default(now())
 }
@@ -74,6 +78,8 @@ model FriendshipMessage {
   text String
   friendship Friendship @relation(fields: [friendship_id], references: [id])
   friendship_id String
+  sender User @relation(fields: [sender_id], references: [id])
+  sender_id String
   sent_at DateTime @default(now())
   modified_at DateTime @default(now())
 }
