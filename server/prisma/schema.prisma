@@ -16,12 +16,64 @@ datasource db {
 model User {
   id String @id @default(uuid())
   email String @unique
-  posts Post[]
+  pseudo String @unique
+  password String
+  img String
+  confirmation_token String @default(uuid())
+  is_validated Boolean @default(false)
+  password_reset_token String @default(uuid())
+  created_at DateTime @default(now())
+  modified_at DateTime @default(now())
+  sent_friendships Friendship[] @relation("sender")
+  received_friendships Friendship[] @relation("receiver")
+  group_created Group[]
+  groups GroupMember[]
 }
 
-model Post {
-  id Int @id @default(autoincrement())
-  title String
+model Friendship {
+  id String @id @default(uuid())
+  sender User @relation("sender", fields: [sender_id], references: [id])
+  sender_id String
+  receiver User @relation("receiver", fields: [receiver_id], references: [id])
+  receiver_id String
+  sent_at DateTime @default(now())
+  accepted_at DateTime?
+  is_pending Boolean @default(true)
+  messages FriendshipMessage[]
+}
+
+model Group {
+  id String @id @default(uuid())
+  name String
   creator User @relation(fields: [creator_id], references: [id])
   creator_id String
+  created_at DateTime @default(now())
+  members GroupMember[]
+  messages GroupMessage[]
+}
+
+model GroupMember {
+  id String @id @default(uuid())
+  group Group @relation(fields: [group_id], references: [id])
+  group_id String
+  member User @relation(fields: [member_id], references: [id])
+  member_id String
+}
+
+model GroupMessage {
+  id String @id @default(uuid())
+  text String
+  group Group @relation(fields: [group_id], references: [id])
+  group_id String
+  sent_at DateTime @default(now())
+  modified_at DateTime @default(now())
+}
+
+model FriendshipMessage {
+  id String @id @default(uuid())
+  text String
+  friendship Friendship @relation(fields: [friendship_id], references: [id])
+  friendship_id String
+  sent_at DateTime @default(now())
+  modified_at DateTime @default(now())
 }
