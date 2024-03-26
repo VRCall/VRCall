@@ -10,6 +10,14 @@ export interface RegisterData {
 
 export const registerUser = async (data: RegisterData) => {   
 
+    const formData = new FormData();
+
+    formData.append("pseudo", data.pseudo);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("confirmPassword", data.confirmPassword);
+    //formData.append("profilePicture", data.profilePicture!, data.profilePicture?.name);
+
     const jsonData = JSON.stringify({
         pseudo: data.pseudo,
         email: data.email,

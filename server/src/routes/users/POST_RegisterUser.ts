@@ -18,6 +18,23 @@ module.exports = async (req: Request, res: Response) => {
 
         const { pseudo, email, password, confirmPassword } = req.body;
 
+        console.log(req.body);
+        
+        
+        // if(profilePicture !== null && !profilePicture?.type.startsWith("image/")) {
+        //     return "Error"
+        // }
+
+        // let newFileName;
+
+        // if(profilePicture !== null) {
+        //     let fileExtension = profilePicture.name.split(".").pop();
+        //     newFileName = "/" + crypto.randomUUID() + "." + fileExtension;
+        // }
+        // else {
+        //     newFileName = "/default.png";
+        // } 
+
         const validatedFields = RegisterSchema.safeParse({
             pseudo: pseudo,
             email: email,
